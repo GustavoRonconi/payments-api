@@ -16,6 +16,11 @@ if os.getenv("ENV") == "dev":
 
 ALLOWED_HOSTS = []
 
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=100),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=100),
+}
+
 # AWS
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID", "1234")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY", "1234")

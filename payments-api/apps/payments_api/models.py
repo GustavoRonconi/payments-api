@@ -7,7 +7,7 @@ class PaymentDebt(models.Model):
 
     debt_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
-    government_id = models.IntegerField()
+    government_id = models.BigIntegerField()
     email = models.EmailField()
     debt_amount = models.DecimalField(max_digits=10, decimal_places=2)
     debt_due_date = models.DateField()

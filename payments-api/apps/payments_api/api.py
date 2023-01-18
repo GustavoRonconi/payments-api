@@ -23,8 +23,6 @@ class PaymentDbtView(ModelViewSet):
     serializer_class = PaymentDebtSerializer
 
 
-
-
 class PaymentsFileUploadView(ViewSet):
     http_method_names: list[str] = ["post", "options"]
     parser_classes = (FormParser, MultiPartParser)
