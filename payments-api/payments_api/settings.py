@@ -20,11 +20,12 @@ ALLOWED_HOSTS = []
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID", "1234")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY", "1234")
 AWS_DEFAULT_REGION = os.environ.get("AWS_DEFAULT_REGION", "us-east-1")
+AWS_ENDPOINT_URL = os.environ.get("AWS_DEFAULT_REGION", "http://localhost:4566")
 PRE_SIGNED_URL_TTL_IN_SECONDS = os.environ.get("PRE_SIGNED_URL_TTL_IN_SECONDS", "3600")
 
 # PROCESSING
 CSV_DELIMITER = os.environ.get("CSV_DELIMITER", ",")
-PAYMENTS_API_BUCKET = os.environ.get("PAYMENTS_API_BUCKET", "payments_api_bucket")
+PAYMENTS_API_BUCKET = os.environ.get("PAYMENTS_API_BUCKET", "csv-files")
 
 
 # Application definition

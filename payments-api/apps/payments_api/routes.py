@@ -5,11 +5,14 @@ from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt import views as jwt_views
 from rest_framework import routers
 
-from apps.payments_api.api import PaymentsFileUpload
+from apps.payments_api.api import PaymentsFileUploadView, PaymentDbtView
 from rest_framework.schemas import get_schema_view
 
 router = routers.DefaultRouter()
-router.register(r"csv-files-upload", PaymentsFileUpload, basename="csv-files-upload")
+router.register(
+    r"csv-files-upload", PaymentsFileUploadView, basename="csv-files-upload"
+)
+router.register(r"payment-debt", PaymentDbtView, basename="payment-debt")
 
 
 urlpatterns = [
@@ -37,7 +40,7 @@ urlpatterns = [
         "docs/",
         TemplateView.as_view(
             template_name="documentation.html",
-            extra_context={"schema_url": "open  api-schema"},
+            extra_context={"schema_url": "openapi-schema"},
         ),
         name="swagger-ui",
     ),

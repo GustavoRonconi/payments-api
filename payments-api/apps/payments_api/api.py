@@ -7,24 +7,32 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
-from rest_framework.viewsets import ViewSet
+from rest_framework.viewsets import ViewSet, ModelViewSet
 
 from .exceptions import CharsetNotUtf8Exception, FileTypeNotCsvException
-from .serializers import (
-    PaymentsFileUploadSerializer,
-)
+from .serializers import PaymentsFileUploadSerializer, PaymentDebtSerializer
 from payments_api.settings import CSV_DELIMITER, PAYMENTS_API_BUCKET
 from payments_api.clients import s3_client
+from apps.payments_api.models import PaymentDebt
 
 
-class PaymentsFileUpload(ViewSet):
+class PaymentDbtView(ModelViewSet):
+    http_method_names: list[str] = ["post"]
+    permission_classes = (IsAuthenticated,)
+    queryset = PaymentDebt.objects.all().order_by("debt_id")
+    serializer_class = PaymentDebtSerializer
+
+
+
+
+class PaymentsFileUploadView(ViewSet):
     http_method_names: list[str] = ["post", "options"]
     parser_classes = (FormParser, MultiPartParser)
     serializer_class = PaymentsFileUploadSerializer
     permission_classes = (IsAuthenticated,)
 
     def create(self, request: Request) -> Response:
-        serializer = self.get_serializer(data=request.data)
+        serializer = PaymentsFileUploadSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
         file_uploaded = request.data.get("file")
