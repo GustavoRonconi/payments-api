@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from apps.payments_api.models import PaymentDebt
+from apps.payments_api.models import PaymentCredit, PaymentDebt
 
 
 class PaymentsFileUploadSerializer(serializers.Serializer):
@@ -16,3 +16,9 @@ class PaymentDebtSerializer(serializers.ModelSerializer):
     class Meta:
         model = PaymentDebt
         fields = "__all__"
+
+
+class PaymentCreditSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PaymentCredit
+        fields = ["debt_id", "paid_at", "paid_amount", "paid_by"]

@@ -7,3 +7,7 @@ class FileTypeNotCsvException(ValidationError):
 
 class CharsetNotUtf8Exception(ValidationError):
     default_detail = "Uploaded file must have 'UTF-8' charset"
+
+
+class PositiveBalanceException(ValidationError):
+    default_detail = "Positive Balance"

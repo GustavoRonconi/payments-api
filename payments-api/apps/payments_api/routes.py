@@ -5,7 +5,11 @@ from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt import views as jwt_views
 from rest_framework import routers
 
-from apps.payments_api.api import PaymentsFileUploadView, PaymentDbtView
+from apps.payments_api.api import (
+    PaymentsFileUploadView,
+    PaymentDbtView,
+    PaymentCreditView,
+)
 from rest_framework.schemas import get_schema_view
 
 router = routers.DefaultRouter()
@@ -13,6 +17,7 @@ router.register(
     r"csv-files-upload", PaymentsFileUploadView, basename="csv-files-upload"
 )
 router.register(r"payment-debt", PaymentDbtView, basename="payment-debt")
+router.register(r"payment-credit", PaymentCreditView, basename="payment-credit")
 
 
 urlpatterns = [
